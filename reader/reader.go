@@ -11,14 +11,13 @@ func check(e error) {
 }
 
 // ReadAndParseFile reads in csv file and parses the result
-func ReadAndParseFile(fileName string) {
+func ReadAndParseFile(fileName string) Entries {
 
 	csvData, err := ioutil.ReadFile(fileName)
 	check(err)
 
-	parseCSV(string(csvData))
+	parsedData := parseCSV(string(csvData))
 
-	// fmt.Println(parsedCSV)s
-	// return "hi"
+	return parsedData
 
 }

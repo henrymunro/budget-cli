@@ -24,7 +24,7 @@ func logger(msg string) {
 	fmt.Println("Nationwide parser: ", msg)
 }
 
-func (n NationwideParser) parse(input string) []entry {
+func (n NationwideParser) parse(input string) Entries {
 	logger("Parsing file as Nationwide csv")
 
 	reader := csv.NewReader(strings.NewReader(input))
@@ -38,7 +38,7 @@ func (n NationwideParser) parse(input string) []entry {
 	check(err)
 	logger("Header line - " + strings.Join(columnTitles, ", "))
 
-	var entries []entry
+	var entries Entries
 	i := 0
 	for {
 		i++
@@ -51,7 +51,7 @@ func (n NationwideParser) parse(input string) []entry {
 		if amountWithoutCurrency != "" {
 			amountFloat, err := strconv.ParseFloat(amountWithoutCurrency, 64)
 			check(err)
-			entries = append(entries, entry{date: line[0], description: line[2], amount: float32(amountFloat)})
+			entries = append(entries, Entry{date: line[0], description: line[2], amount: float32(amountFloat)})
 		}
 
 	}
