@@ -13,7 +13,7 @@ func check(e error) {
 }
 
 // Process - applies the budget type mappings and aggragates on a monthly basis
-func Process(entries entries, budgetTypeFilePath string) ([]MappedEntry, []AggragatedEntry) {
+func Process(entries entries, budgetTypeFilePath string) ([]MappedEntry, []AggragatedBudgetType) {
 
 	mappings := getMappings(budgetTypeFilePath)
 	mappedEnties := applyMappings(entries, mappings)

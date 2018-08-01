@@ -2,7 +2,6 @@ package reader
 
 import (
 	"encoding/csv"
-	"fmt"
 	"io"
 	"strconv"
 	"strings"
@@ -61,6 +60,5 @@ func convertDatesToShortFormat(date string) time.Time {
 	const shortForm = "02 Jan 2006"
 	t, err := time.Parse(shortForm, date)
 	check(err)
-	fmt.Println(date, t)
 	return t
 }

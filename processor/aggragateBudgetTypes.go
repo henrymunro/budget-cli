@@ -1,7 +1,7 @@
 package processor
 
-// AggragatedEntry - Contains the aggragated information for a specific budget type for a month
-type AggragatedEntry struct {
+// AggragatedBudgetType - Contains the aggragated information for a specific budget type for a month
+type AggragatedBudgetType struct {
 	MonthYear  string
 	BudgetType string
 	Count      int32
@@ -11,9 +11,9 @@ type AggragatedEntry struct {
 	Max        float32
 }
 
-func aggragateBudgetTypes(entries []MappedEntry) []AggragatedEntry {
+func aggragateBudgetTypes(entries []MappedEntry) []AggragatedBudgetType {
 
-	var aggragatedEntries []AggragatedEntry
+	var aggragatedEntries []AggragatedBudgetType
 
 	for _, entry := range entries {
 		index := findBudgetTypeIndex(entry.BudgetType, convertToMonthYear(entry.Date), aggragatedEntries)
@@ -27,7 +27,7 @@ func aggragateBudgetTypes(entries []MappedEntry) []AggragatedEntry {
 	return aggragatedEntries
 }
 
-func findBudgetTypeIndex(budgetType string, monthYear string, aggragatedEntries []AggragatedEntry) int {
+func findBudgetTypeIndex(budgetType string, monthYear string, aggragatedEntries []AggragatedBudgetType) int {
 	var index = -1
 
 	for i, aggragatedEntry := range aggragatedEntries {
@@ -39,8 +39,8 @@ func findBudgetTypeIndex(budgetType string, monthYear string, aggragatedEntries 
 	return index
 }
 
-func newAggragatedEntry(entry MappedEntry) AggragatedEntry {
-	var newTypeEntry = AggragatedEntry{BudgetType: entry.BudgetType}
+func newAggragatedEntry(entry MappedEntry) AggragatedBudgetType {
+	var newTypeEntry = AggragatedBudgetType{BudgetType: entry.BudgetType}
 	newTypeEntry.MonthYear = convertToMonthYear(entry.Date)
 	newTypeEntry.Count = 1
 	newTypeEntry.Total = entry.Amount
@@ -50,7 +50,7 @@ func newAggragatedEntry(entry MappedEntry) AggragatedEntry {
 	return newTypeEntry
 }
 
-func applyEntryToAggragate(entry MappedEntry, aggragatedEntry *AggragatedEntry) {
+func applyEntryToAggragate(entry MappedEntry, aggragatedEntry *AggragatedBudgetType) {
 	aggragatedEntry.Average = ((aggragatedEntry.Total * float32(aggragatedEntry.Count)) + entry.Amount) / (float32(aggragatedEntry.Count) + 1.0)
 	aggragatedEntry.Total = aggragatedEntry.Total + entry.Amount
 	aggragatedEntry.Count = aggragatedEntry.Count + 1
