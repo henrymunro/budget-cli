@@ -13,6 +13,7 @@ import (
 
 type mappedEntry = processor.MappedEntry
 type aggragatedBudgetType = processor.AggragatedBudgetType
+type otherGroup = processor.OtherGroup
 
 type csvRow = []string
 
@@ -20,7 +21,7 @@ const dateFormatLong = "2006-01-02 15:04"
 const dateFormatShort = "2006-01-02"
 
 // WriteOutputToCsv - write the processed mappedEntries and aggragatedBudgetTypes to specified output file
-func WriteOutputToCsv(filepath string, mappedEntries []mappedEntry, aggragatedBudgetTypes []aggragatedBudgetType) {
+func WriteOutputToCsv(filepath string, mappedEntries []mappedEntry, aggragatedBudgetTypes []aggragatedBudgetType, otherGroups []otherGroup) {
 	logger("Writing to file " + filepath)
 	file, err := os.Create(filepath)
 	checkError("Cannot create file", err)
@@ -39,6 +40,10 @@ func WriteOutputToCsv(filepath string, mappedEntries []mappedEntry, aggragatedBu
 	writeCommentRow("", writer)
 	logger("Writing mapped entries")
 	writeMappedEntries(mappedEntries, writer)
+
+	writeCommentRow("", writer)
+	logger("Writing unmapped aggragated other information")
+	writeOtherGroups(otherGroups, writer)
 
 }
 
@@ -70,6 +75,18 @@ func writeMappedEntries(mappedEntires []mappedEntry, writer *csv.Writer) {
 		row[2] = "£" + floatToString(value.Amount)
 		row[3] = value.Description
 		row[4] = value.Mapping
+		writeRow(row, writer)
+	}
+}
+
+func writeOtherGroups(otherGroups []otherGroup, writer *csv.Writer) {
+	var header = csvRow{"Unmapped description", "Count"}
+	writeRow(header, writer)
+
+	for _, value := range otherGroups {
+		var row = make([]string, 2)
+		row[0] = value.Description
+		row[1] = strconv.Itoa(int(value.Count))
 		writeRow(row, writer)
 	}
 }

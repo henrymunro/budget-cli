@@ -15,6 +15,8 @@ type MappedEntry struct {
 	Mapping     string
 }
 
+const other = "Other"
+
 func applyMappings(entries entries, mappings []mapping) []MappedEntry {
 	applyMappingsLogger("Applying mappings")
 
@@ -28,7 +30,7 @@ func applyMappings(entries entries, mappings []mapping) []MappedEntry {
 }
 
 func getMappingForDescription(description string, mappings []mapping) (string, string) {
-	var budgetType = "Other"
+	var budgetType = other
 	var matchedMapping = ""
 	for _, mapping := range mappings {
 		uppercaseMapping := strings.ToUpper(mapping.Mapping)
