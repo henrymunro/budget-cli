@@ -1,9 +1,25 @@
 {
   "mappings": [
-    { "budgetType": "TFL", "mapping": "TFL.GOV.UK" },
-    { "budgetType": "Trains", "mapping": "trainline.com" },
-    { "budgetType": "Groceries", "mapping": "sainsburys" },
+    { "budgetType": "Bills", "mapping": "VIRGIN" },
+    { "budgetType": "Bills", "mapping": "Spotify" },
+    { "budgetType": "Cash", "mapping": "Withdrawal" },
+    { "budgetType": "Climbing", "mapping": "CLIMBING" },
+    { "budgetType": "Drink", "mapping": "XOYO" },
+    { "budgetType": "Drink", "mapping": "ROCKET LONDON" },
+    {
+      "budgetType": "Entertainment - tickets",
+      "mapping": "RESIDENT ADVISOR TICKE"
+    },
+    { "budgetType": "Entertainment - tickets", "mapping": "DICE LONDON" },
+    { "budgetType": "Groceries", "mapping": "sainsbury" },
     { "budgetType": "Groceries", "mapping": "Tesco" },
-    { "budgetType": "Lunch", "mapping": "SAINSBURYS S/MKTS SLOANE AVENUE" }
+    { "budgetType": "Groceries", "mapping": "WAITROSE" },
+    { "budgetType": "Groceries", "mapping": "M&S SIMPLY FOOD" },
+    { "budgetType": "Groceries", "mapping": "MARKS&SPENCER" },
+    { "budgetType": "Lunch", "mapping": "SAINSBURYS S/MKTS SLOANE AVENUE" },
+    { "budgetType": "Lunch", "mapping": "WASABI" },
+    { "budgetType": "Rent", "mapping": "TANYA" },
+    { "budgetType": "TFL", "mapping": "TFL.GOV.UK" },
+    { "budgetType": "Trains", "mapping": "trainline" }
   ]
 }
