@@ -4,12 +4,6 @@ import (
 	"io/ioutil"
 )
 
-func check(e error) {
-	if e != nil {
-		panic(e)
-	}
-}
-
 // ReadAndParseFile reads in csv file and parses the result
 func ReadAndParseFile(fileName string) Entries {
 

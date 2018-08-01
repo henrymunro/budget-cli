@@ -1,0 +1,21 @@
+# .goreleaser.yml
+# Build customization
+builds:
+  - main: main.go
+    binary: budget-cli
+    goos:
+      - darwin
+      - linux
+    goarch:
+      - amd64
+# Archive customization
+archive:
+  format: tar.gz
+  replacements:
+    darwin: macOS
+  files:
+    - budgetTypeMappings.json
+    - install_macOS.sh
+
+env_files:
+  github_token: ~/.github/budget-cli-release-token

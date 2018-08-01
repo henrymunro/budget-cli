@@ -1,9 +1,9 @@
 package main
 
 import (
-	"github.com/henrymunro/budget/reader"
+	"github.com/henrymunro/budget/cmd"
 )
 
 func main() {
-	reader.ReadAndParseFile("statement.csv")
+	cmd.Execute()
 }
