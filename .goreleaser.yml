@@ -14,7 +14,7 @@ archive:
   replacements:
     darwin: macOS
   files:
-    - budgetTypeMapping.json
+    - budgetTypeMappings.json
 
 env_files:
   github_token: ~/.github/budget-cli-release-token
