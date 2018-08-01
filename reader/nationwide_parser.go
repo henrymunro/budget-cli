@@ -6,6 +6,7 @@ import (
 	"io"
 	"strconv"
 	"strings"
+	"time"
 )
 
 // NationwideParser csv reader for nationwide statements
@@ -20,23 +21,19 @@ type nationwideEntry struct {
 	balance         float32
 }
 
-func logger(msg string) {
-	fmt.Println("Nationwide parser: ", msg)
-}
-
 func (n NationwideParser) parse(input string) Entries {
-	logger("Parsing file as Nationwide csv")
+	nationwideLogger("Parsing file as Nationwide csv")
 
 	reader := csv.NewReader(strings.NewReader(input))
 	reader.FieldsPerRecord = 6
 
 	const nationwideHeaderLines = 3
-	logger("Discarding first 3 lines")
+	nationwideLogger("Discarding first 3 lines")
 	discardNumberOfCSVLines(nationwideHeaderLines, reader)
 
 	columnTitles, err := reader.Read()
 	check(err)
-	logger("Header line - " + strings.Join(columnTitles, ", "))
+	nationwideLogger("Header line - " + strings.Join(columnTitles, ", "))
 
 	var entries Entries
 	i := 0
@@ -51,11 +48,19 @@ func (n NationwideParser) parse(input string) Entries {
 		if amountWithoutCurrency != "" {
 			amountFloat, err := strconv.ParseFloat(amountWithoutCurrency, 64)
 			check(err)
-			entries = append(entries, Entry{date: line[0], description: line[2], amount: float32(amountFloat)})
+			entries = append(entries, Entry{Date: convertDatesToShortFormat(line[0]), Description: line[2], Amount: float32(amountFloat)})
 		}
 
 	}
-	logger("Parsed " + strconv.Itoa(i) + " lines")
+	nationwideLogger("Parsed " + strconv.Itoa(i) + " lines")
 
 	return entries
+}
+
+func convertDatesToShortFormat(date string) time.Time {
+	const shortForm = "02 Jan 2006"
+	t, err := time.Parse(shortForm, date)
+	check(err)
+	fmt.Println(date, t)
+	return t
 }

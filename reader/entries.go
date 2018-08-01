@@ -1,10 +1,12 @@
 package reader
 
+import "time"
+
 // Entry - single entry read in from statement file
 type Entry struct {
-	date        string
-	amount      float32
-	description string
+	Date        time.Time
+	Amount      float32
+	Description string
 }
 
 // Entries - slice of entries read in from statement file

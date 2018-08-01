@@ -1,0 +1,9 @@
+{
+  "mappings": [
+    { "budgetType": "TFL", "mapping": "TFL.GOV.UK" },
+    { "budgetType": "Trains", "mapping": "trainline.com" },
+    { "budgetType": "Groceries", "mapping": "sainsburys" },
+    { "budgetType": "Groceries", "mapping": "Tesco" },
+    { "budgetType": "Lunch", "mapping": "SAINSBURYS S/MKTS SLOANE AVENUE" }
+  ]
+}

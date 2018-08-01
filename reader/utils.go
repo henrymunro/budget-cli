@@ -24,3 +24,17 @@ func trimLeftChars(s string, n int) string {
 	}
 	return s[:0]
 }
+
+func check(e error) {
+	if e != nil {
+		panic(e)
+	}
+}
+
+func rootLogger(msg string) {
+	fmt.Println("Reader: ", msg)
+}
+
+func nationwideLogger(msg string) {
+	rootLogger("Nationwide parser: " + msg)
+}

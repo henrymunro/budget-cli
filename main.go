@@ -1,9 +1,13 @@
 package main
 
 import (
+	"github.com/henrymunro/budget/processor"
 	"github.com/henrymunro/budget/reader"
 )
 
+const mappingsFilePath = "budgetTypeMappings.json"
+
 func main() {
-	reader.ReadAndParseFile("statement.csv")
+	entries := reader.ReadAndParseFile("statement.csv")
+	mappedEntries, aggragatedBudgetTypes := processor.Process(entries, mappingsFilePath)
 }
