@@ -1,16 +1,9 @@
 package main
 
 import (
-	"github.com/henrymunro/budget/processor"
-	"github.com/henrymunro/budget/reader"
-	"github.com/henrymunro/budget/writer"
+	"github.com/henrymunro/budget/cmd"
 )
 
-const mappingsFilePath = "budgetTypeMappings.json"
-
 func main() {
-	entries := reader.ReadAndParseFile("statement.csv")
-	mappedEntries, aggragatedBudgetTypes, otherGroup := processor.Process(entries, mappingsFilePath)
-
-	writer.WriteOutputToCsv("output.csv", mappedEntries, aggragatedBudgetTypes, otherGroup)
+	cmd.Execute()
 }
