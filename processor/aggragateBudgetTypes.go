@@ -51,7 +51,7 @@ func newAggragatedEntry(entry MappedEntry) AggragatedBudgetType {
 }
 
 func applyEntryToAggragate(entry MappedEntry, aggragatedEntry *AggragatedBudgetType) {
-	aggragatedEntry.Average = ((aggragatedEntry.Total * float32(aggragatedEntry.Count)) + entry.Amount) / (float32(aggragatedEntry.Count) + 1.0)
+	aggragatedEntry.Average = (aggragatedEntry.Total + entry.Amount) / (float32(aggragatedEntry.Count) + 1.0)
 	aggragatedEntry.Total = aggragatedEntry.Total + entry.Amount
 	aggragatedEntry.Count = aggragatedEntry.Count + 1
 	if entry.Amount < aggragatedEntry.Min {
